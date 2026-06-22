@@ -16,12 +16,12 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}--give repository 1 step
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
-          aws-region: us-east-2 --change zone 2 step
+          aws-region: us-east-2
 
       - name: Deploy to S3
         run: |
-          aws s3 sync . s3://s3gitbucket16 --bucket name 3 step \
+          aws s3 sync . s3://s3gitbucket16 --delete \
             --exclude ".git/*" \
             --exclude ".github/*"
