@@ -1,0 +1,27 @@
+name: Deploy Static Website to S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}--give repository 1 step
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: us-east-2 --change zone 2 step
+
+      - name: Deploy to S3
+        run: |
+          aws s3 sync . s3://s3gitbucket16 --bucket name 3 step \
+            --exclude ".git/*" \
+            --exclude ".github/*"
